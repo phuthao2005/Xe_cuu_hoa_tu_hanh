@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển Robot Cứu Hỏa Tự Hành - ESP32</title>
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-card: #131b2e;
+      --bg-card-hover: #19233c;
+      --border-color: #233152;
+      --text-main: #f1f5f9;
+      --text-muted: #8e9db5;
+      
+      --color-safe: #10b981;
+      --color-warn: #f59e0b;
+      --color-danger: #ef4444;
+      --color-cyan: #06b6d4;
+      --color-purple: #8b5cf6;
+      --color-blue: #3b82f6;
+      
+      --glow-danger: 0 0 25px rgba(239, 68, 68, 0.7);
+      --glow-safe: 0 0 20px rgba(16, 185, 129, 0.5);
+      --glow-warn: 0 0 20px rgba(245, 158, 11, 0.5);
+      --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding: 16px;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #131d36 0%, #0d1527 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-title-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .robot-badge-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #ef4444, #f59e0b);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+
+    .header-titles h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(90deg, #f8fafc, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    .header-titles p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .conn-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--color-safe);
+    }
+
+    .conn-status.disconnected {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: var(--color-danger);
+    }
+
+    .conn-status.demo {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--color-warn);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 10px currentColor;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .btn-toggle-demo {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-toggle-demo:hover {
+      background: #334155;
+      border-color: #475569;
+    }
+
+    /* TOP PRIORITY: ALGORITHM STATE HERO BANNER */
+    .state-banner-container {
+      margin-bottom: 20px;
+    }
+
+    .state-banner {
+      background: linear-gradient(180deg, #16213c 0%, #0f172a 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .state-banner-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .state-badge-huge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 14px 36px;
+      border-radius: 9999px;
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 5 States colors from requirement */
+    .state-patrol {
+      background: rgba(16, 185, 129, 0.18);
+      border: 2px solid var(--color-safe);
+      color: #34d399;
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.35);
+    }
+
+    .state-avoid {
+      background: rgba(245, 158, 11, 0.18);
+      border: 2px solid var(--color-warn);
+      color: #fbbf24;
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.35);
+    }
+
+    .state-approach {
+      background: rgba(249, 115, 22, 0.22);
+      border: 2px solid #f97316;
+      color: #fb923c;
+      box-shadow: 0 0 35px rgba(249, 115, 22, 0.4);
+    }
+
+    .state-extinguish {
+      background: rgba(239, 68, 68, 0.25);
+      border: 2px solid var(--color-danger);
+      color: #f87171;
+      box-shadow: 0 0 45px rgba(239, 68, 68, 0.6);
+      animation: alertPulse 1.2s infinite;
+    }
+
+    .state-idle {
+      background: rgba(59, 130, 246, 0.18);
+      border: 2px solid var(--color-blue);
+      color: #60a5fa;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .state-estop {
+      background: rgba(220, 38, 38, 0.35);
+      border: 3px solid #dc2626;
+      color: #ffffff;
+      box-shadow: 0 0 50px rgba(220, 38, 38, 0.9);
+      animation: alertPulse 0.8s infinite;
+    }
+
+    @keyframes alertPulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.02); filter: brightness(1.25); }
+    }
+
+    .state-subtext {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* MAIN GRID LAYOUT */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #3b4e7a;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    /* 1. CẢM BIẾN LỬA 3 HƯỚNG */
+    .flame-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .flame-col {
+      background: rgba(10, 14, 23, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 8px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .flame-col.active-fire {
+      border-color: var(--color-danger);
+      background: rgba(239, 68, 68, 0.12);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+
+    .flame-col-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .flame-led {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .flame-led.safe {
+      background: radial-gradient(circle, #34d399 20%, #059669 80%);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+      border: 2px solid #6ee7b7;
+      color: white;
+    }
+
+    .flame-led.danger {
+      background: radial-gradient(circle, #f87171 20%, #dc2626 80%);
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.9);
+      border: 2px solid #fca5a5;
+      color: white;
+      animation: flameBlink 0.5s infinite alternate;
+    }
+
+    @keyframes flameBlink {
+      from { transform: scale(1); filter: brightness(1); }
+      to { transform: scale(1.15); filter: brightness(1.4); }
+    }
+
+    .flame-status-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .flame-status-text.safe { color: var(--color-safe); }
+    .flame-status-text.danger { color: #f87171; }
+
+    .flame-adc-val {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-family: monospace;
+    }
+
+    /* 2. CẢM BIẾN SIÊU ÂM HC-SR04 */
+    .sonar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sonar-item {
+      background: rgba(10, 14, 23, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .sonar-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .sonar-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sonar-value {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-family: monospace;
+      color: #38bdf8;
+    }
+
+    .sonar-bar-bg {
+      width: 100%;
+      height: 12px;
+      background: #1e293b;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sonar-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      width: 60%;
+      transition: width 0.3s ease, background 0.3s;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+    }
+
+    .sonar-bar-fill.warning {
+      background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    }
+
+    .sonar-bar-fill.critical {
+      background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+
+    .sonar-range-legend {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-size: 0.68rem;
+      color: #64748b;
+    }
+
+    /* 3. TRẠNG THÁI CCCH: MÁY BƠM NƯỚC */
+    .pump-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 10px 0;
+      flex-grow: 1;
+    }
+
+    .pump-icon-wrapper {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      background: #1a243d;
+      border: 3px solid #334155;
+      transition: all 0.3s;
+    }
+
+    .pump-icon-wrapper.active {
+      border-color: #38bdf8;
+      background: rgba(14, 165, 233, 0.2);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+      animation: waterSpray 1s infinite alternate;
+    }
+
+    @keyframes waterSpray {
+      0% { transform: scale(1) rotate(-3deg); }
+      100% { transform: scale(1.08) rotate(3deg); }
+    }
+
+    .water-stream {
+      position: absolute;
+      top: -12px;
+      right: -10px;
+      font-size: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .pump-icon-wrapper.active .water-stream {
+      opacity: 1;
+      animation: sprayDrops 0.6s infinite;
+    }
+
+    @keyframes sprayDrops {
+      0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translate(15px, -15px) scale(1.3); opacity: 0; }
+    }
+
+    .pump-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+    }
+
+    .pump-status-badge.active {
+      background: rgba(14, 165, 233, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    /* 4. GÓC QUAY SERVO VÒI PHUN */
+    .servo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      padding: 10px 0;
+    }
+
+    .servo-dial-box {
+      width: 200px;
+      height: 110px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .servo-arc-bg {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 10px solid #1e293b;
+      border-top-color: #38bdf8;
+      border-right-color: #10b981;
+      border-left-color: #f59e0b;
+      position: absolute;
+      top: 0;
+      box-sizing: border-box;
+    }
+
+    .servo-needle {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      width: 4px;
+      height: 80px;
+      background: #ef4444;
+      transform-origin: bottom center;
+      transform: translateX(-50%) rotate(0deg);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+      z-index: 3;
+    }
+
+    .servo-center-pivot {
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 3px solid #0f172a;
+      z-index: 4;
+    }
+
+    .servo-angle-display {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .servo-angle-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #38bdf8;
+      font-family: monospace;
+    }
+
+    .servo-angle-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .servo-scale-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 220px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* 5. HƯỚNG DI CHUYỂN */
+    .motion-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      padding: 10px 0;
+    }
+
+    .motion-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 56px);
+      grid-template-rows: repeat(3, 56px);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .motion-cell {
+      border-radius: 12px;
+      background: rgba(10, 14, 23, 0.6);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #475569;
+      transition: all 0.25s;
+    }
+
+    .motion-cell.active {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: #3b82f6;
+      color: #60a5fa;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+      transform: scale(1.08);
+    }
+
+    .motion-title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 8px;
+      background: #1e293b;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+
+    /* 6. NÚT DỪNG KHẨN CẤP (E-STOP) */
+    .estop-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .estop-bezel {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: repeating-linear-gradient(
+        45deg,
+        #eab308,
+        #eab308 12px,
+        #1e293b 12px,
+        #1e293b 24px
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.2);
+      border: 4px solid #0f172a;
+    }
+
+    .estop-inner-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #334155;
+    }
+
+    .estop-button {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ef4444 0%, #b91c1c 65%, #7f1d1d 100%);
+      border: 3px solid #f87171;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6), inset 0 4px 10px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-align: center;
+      transition: all 0.15s ease;
+      user-select: none;
+      outline: none;
+    }
+
+    .estop-button:hover {
+      box-shadow: 0 0 30px rgba(239, 68, 68, 0.8), inset 0 4px 12px rgba(255, 255, 255, 0.4);
+      transform: scale(1.03);
+    }
+
+    .estop-button:active,
+    .estop-button.latched {
+      transform: translateY(4px) scale(0.96);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), inset 0 4px 15px rgba(0, 0, 0, 0.6);
+      background: radial-gradient(circle at 35% 35%, #991b1b 0%, #7f1d1d 70%, #450a0a 100%);
+      border-color: #ef4444;
+    }
+
+    .estop-btn-text-main {
+      font-size: 1.05rem;
+      line-height: 1.1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .estop-btn-text-sub {
+      font-size: 0.65rem;
+      margin-top: 3px;
+      opacity: 0.85;
+      font-weight: 700;
+    }
+
+    .btn-reset-estop {
+      margin-top: 14px;
+      background: #334155;
+      color: #f1f5f9;
+      border: 1px solid #475569;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset-estop:hover {
+      background: #475569;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border-color);
+      padding: 14px 10px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .header-titles h1 { font-size: 1.15rem; }
+      .state-badge-huge { font-size: 1.15rem; padding: 10px 20px; }
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-title-box">
+      <div class="robot-badge-icon">🚒</div>
+      <div class="header-titles">
+        <h1>Bảng Giám Sát Robot Cứu Hỏa Tự Hành</h1>
+        <p>Đồ án Nhập môn Cơ điện tử • Điều khiển & Giám sát Vi điều khiển ESP32</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div id="conn-badge" class="conn-status demo">
+        <span class="pulse-dot"></span>
+        <span id="conn-text">Chế độ mô phỏng (Demo)</span>
+      </div>
+      <button id="btn-mode-toggle" class="btn-toggle-demo" onclick="toggleDemoMode()">
+        Chuyển kết nối ESP32
+      </button>
+    </div>
+  </header>
+
+  <!-- YÊU CẦU: DÒNG TEXT LỚN Ở GIỮA MÀN HÌNH TÓM TẮT STATE THUẬT TOÁN -->
+  <section class="state-banner-container">
+    <div class="state-banner" id="state-banner-card">
+      <div class="state-banner-label">
+        <span>⚡ TRẠNG THÁI THUẬT TOÁN ĐIỀU KHIỂN (ALGORITHM STATE) ⚡</span>
+      </div>
+      <div id="robot-state-badge" class="state-badge-huge state-patrol">
+        <span id="state-icon">🟢</span>
+        <span id="state-title">Đang tuần tra (Patrolling)</span>
+      </div>
+      <div class="state-subtext" id="state-description">
+        Xe di chuyển tiến về phía trước và quét cảm biến tìm nguồn lửa
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN 6 BLOCKS GRID -->
+  <main class="dashboard-grid">
+
+    <!-- 1. CẢM BIẾN LỬA 3 HƯỚNG -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🔥</span> Cảm Biến Lửa (3 Hướng)
+        </div>
+        <div class="card-badge">ADC Cổng AO</div>
+      </div>
+      <div class="flame-grid">
+        <!-- TRÁI -->
+        <div class="flame-col" id="col-flame-left">
+          <div class="flame-col-title">Trái (Left)</div>
+          <div class="flame-led safe" id="led-flame-left">✓</div>
+          <div class="flame-status-text safe" id="text-flame-left">AN TOÀN</div>
+          <div class="flame-adc-val" id="adc-flame-left">ADC: 3850</div>
+        </div>
+        <!-- GIỮA -->
+        <div class="flame-col" id="col-flame-center">
+          <div class="flame-col-title">Giữa (Center)</div>
+          <div class="flame-led safe" id="led-flame-center">✓</div>
+          <div class="flame-status-text safe" id="text-flame-center">AN TOÀN</div>
+          <div class="flame-adc-val" id="adc-flame-center">ADC: 3910</div>
+        </div>
+        <!-- PHẢI -->
+        <div class="flame-col" id="col-flame-right">
+          <div class="flame-col-title">Phải (Right)</div>
+          <div class="flame-led safe" id="led-flame-right">✓</div>
+          <div class="flame-status-text safe" id="text-flame-right">AN TOÀN</div>
+          <div class="flame-adc-val" id="adc-flame-right">ADC: 3890</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. CẢM BIẾN SIÊU ÂM HC-SR04 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>📡</span> Cảm Biến Siêu Âm HC-SR04
+        </div>
+        <div class="card-badge">Đơn vị: cm</div>
+      </div>
+      <div class="sonar-list">
+        <!-- TRÁI -->
+        <div class="sonar-item">
+          <div class="sonar-info">
+            <span class="sonar-label">Trái (Echo D27)</span>
+            <span class="sonar-value" id="dist-val-left">45.0 cm</span>
+          </div>
+          <div class="sonar-bar-bg">
+            <div class="sonar-bar-fill" id="bar-left" style="width: 55%;"></div>
+          </div>
+          <div class="sonar-range-legend">
+            <span>0 cm</span><span>18cm (Cản)</span><span>30cm (Cảnh báo)</span><span>80+ cm</span>
+          </div>
+        </div>
+        <!-- GIỮA -->
+        <div class="sonar-item">
+          <div class="sonar-info">
+            <span class="sonar-label">Giữa (Echo D14)</span>
+            <span class="sonar-value" id="dist-val-center">62.5 cm</span>
+          </div>
+          <div class="sonar-bar-bg">
+            <div class="sonar-bar-fill" id="bar-center" style="width: 78%;"></div>
+          </div>
+          <div class="sonar-range-legend">
+            <span>0 cm</span><span>18cm (Cản)</span><span>30cm (Cảnh báo)</span><span>80+ cm</span>
+          </div>
+        </div>
+        <!-- PHẢI -->
+        <div class="sonar-item">
+          <div class="sonar-info">
+            <span class="sonar-label">Phải (Echo D15)</span>
+            <span class="sonar-value" id="dist-val-right">48.2 cm</span>
+          </div>
+          <div class="sonar-bar-bg">
+            <div class="sonar-bar-fill" id="bar-right" style="width: 60%;"></div>
+          </div>
+          <div class="sonar-range-legend">
+            <span>0 cm</span><span>18cm (Cản)</span><span>30cm (Cảnh báo)</span><span>80+ cm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. TRẠNG THÁI CCCH: MÁY BƠM NƯỚC -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>💦</span> Trạng Thái CCCH: Máy Bơm
+        </div>
+        <div class="card-badge">Relay GPIO 13</div>
+      </div>
+      <div class="pump-container">
+        <div class="pump-icon-wrapper" id="pump-indicator">
+          <span class="pump-icon">🚒</span>
+          <span class="water-stream">💧</span>
+        </div>
+        <div class="pump-status-badge" id="pump-status-text">
+          <span>●</span> ĐANG TẮT
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center;">
+          Chế độ Open-Drain tự kích hoạt Relay khi phát hiện có nguồn lửa
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. GÓC QUAY SERVO VÒI PHUN -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🎯</span> Góc Quay Servo Vòi Phun
+        </div>
+        <div class="card-badge">SG90 GPIO 17</div>
+      </div>
+      <div class="servo-container">
+        <div class="servo-dial-box">
+          <div class="servo-arc-bg"></div>
+          <div class="servo-needle" id="servo-needle-gauge"></div>
+          <div class="servo-center-pivot"></div>
+        </div>
+        <div class="servo-scale-labels">
+          <span>Phải (45°)</span>
+          <span>Giữa (90°)</span>
+          <span>Trái (135°)</span>
+        </div>
+        <div class="servo-angle-display">
+          <div class="servo-angle-number" id="servo-angle-text">90°</div>
+          <div class="servo-angle-desc" id="servo-dir-text">Hướng chính giữa vòi phun</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. HƯỚNG DI CHUYỂN XE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🧭</span> Hướng Di Chuyển Xe
+        </div>
+        <div class="card-badge">L298N 8-PWM</div>
+      </div>
+      <div class="motion-container">
+        <div class="motion-pad">
+          <div class="motion-cell"></div>
+          <div class="motion-cell" id="motion-forward">▲</div>
+          <div class="motion-cell"></div>
+          <div class="motion-cell" id="motion-left">◄</div>
+          <div class="motion-cell active" id="motion-stop">■</div>
+          <div class="motion-cell" id="motion-right">►</div>
+          <div class="motion-cell"></div>
+          <div class="motion-cell" id="motion-backward">▼</div>
+          <div class="motion-cell"></div>
+        </div>
+        <div class="motion-title-badge" id="motion-display-name">
+          <span>⏹️</span> Xe Đang Đứng Yên
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. NÚT DỪNG KHẨN CẤP (E-STOP) -->
+    <div class="card" style="border-color: #ef444455;">
+      <div class="card-header">
+        <div class="card-title" style="color: #f87171;">
+          <span>⛔</span> Dừng Khẩn Cấp (E-Stop)
+        </div>
+        <div class="card-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">
+          Tiêu chuẩn an toàn
+        </div>
+      </div>
+      <div class="estop-container">
+        <div class="estop-bezel">
+          <div class="estop-inner-ring">
+            <button id="btn-estop" class="estop-button" onclick="triggerEStop()" title="Nhấn để ngắt toàn bộ động cơ & bơm ngay lập tức">
+              <span class="estop-btn-text-main">EMERGENCY<br>STOP</span>
+              <span class="estop-btn-text-sub">DỪNG KHẨN CẤP</span>
+            </button>
+          </div>
+        </div>
+        <button id="btn-reset-estop" class="btn-reset-estop" onclick="resetEStop()">
+          ↻ Xoay mở khóa / Khôi phục
+        </button>
+        <p style="font-size: 0.72rem; color: #94a3b8; margin-top: 8px; text-align: center;">
+          Ngắt tức thì xung PWM L298N & Relay bơm bất kể tín hiệu cảm biến
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    Dự án Xe Robot Tự Hành Cứu Hỏa & Né Vật Cản • Môn Nhập Môn Cơ Điện Tử • ESP32 MicroPython Web Interface
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // System State Data
+    // Auto-detect: Nếu mở từ IP ESP32 (192.168.4.1) -> Chế độ thật. Nếu mở dạng file:// -> Chế độ Demo
+    let isDemoMode = (window.location.protocol === "file:" || window.location.hostname === "localhost");
+    let isEStopLatched = false;
+    let esp32Host = window.location.hostname || "192.168.4.1";
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const badge = document.getElementById("conn-badge");
+      const text = document.getElementById("conn-text");
+      const btn = document.getElementById("btn-mode-toggle");
+
+      if (!isDemoMode) {
+        badge.className = "conn-status";
+        text.textContent = "Đang kết nối ESP32...";
+        btn.textContent = "Bật chế độ Mô Phỏng";
+        pollESP32();
+      }
+    });
+
+    const STATES = {
+      PATROL: {
+        id: "patrol",
+        class: "state-patrol",
+        icon: "🟢",
+        title: "Đang tuần tra (Patrolling)",
+        desc: "Xe di chuyển tiến về phía trước và quét cảm biến tìm nguồn lửa"
+      },
+      AVOID: {
+        id: "avoid",
+        class: "state-avoid",
+        icon: "🟡",
+        title: "Đang né vật cản (Avoiding Obstacle)",
+        desc: "Phát hiện chướng ngại vật phía trước, robot đang lùi hoặc rẽ để tránh va chạm"
+      },
+      APPROACH: {
+        id: "approach",
+        class: "state-approach",
+        icon: "🟠",
+        title: "Phát hiện cháy – Đang tiếp cận (Approaching Fire)",
+        desc: "Cảm biến lửa bắt được tín hiệu hồng ngoại, robot đang định vị và áp sát mục tiêu"
+      },
+      EXTINGUISH: {
+        id: "extinguish",
+        class: "state-extinguish",
+        icon: "🔴",
+        title: "Đang phun nước dập lửa (Extinguishing)",
+        desc: "Đã vào cự ly an toàn, Servo căn chỉnh vòi và Máy bơm Relay kích hoạt dập tắt đám cháy"
+      },
+      IDLE: {
+        id: "idle",
+        class: "state-idle",
+        icon: "⏸️",
+        title: "Dừng an toàn (Idle/Stopped)",
+        desc: "Robot tạm dừng kiểm tra hoặc hoàn thành nhiệm vụ"
+      },
+      ESTOP: {
+        id: "estop",
+        class: "state-estop",
+        icon: "🚨",
+        title: "DỪNG KHẨN CẤP (EMERGENCY STOP)",
+        desc: "HỆ THỐNG ĐÃ NGẮT TOÀN BỘ ĐỘNG CƠ VÀ BƠM THEO LỆNH AN TOÀN!"
+      }
+    };
+
+    // Update Algorithm State Display
+    function setAlgorithmState(stateKey) {
+      const stateObj = STATES[stateKey] || STATES.IDLE;
+      const badge = document.getElementById("robot-state-badge");
+      const icon = document.getElementById("state-icon");
+      const title = document.getElementById("state-title");
+      const desc = document.getElementById("state-description");
+
+      // Reset classes
+      badge.className = "state-badge-huge " + stateObj.class;
+      icon.textContent = stateObj.icon;
+      title.textContent = stateObj.title;
+      desc.textContent = stateObj.desc;
+    }
+
+    // Update Flame Sensors
+    function updateFlameSensors(left, center, right, threshold = 1500) {
+      const isFireLeft = left < threshold;
+      const isFireCenter = center < threshold;
+      const isFireRight = right < threshold;
+
+      updateFlameCol("left", left, isFireLeft);
+      updateFlameCol("center", center, isFireCenter);
+      updateFlameCol("right", right, isFireRight);
+    }
+
+    function updateFlameCol(dir, adcVal, isFire) {
+      const col = document.getElementById(`col-flame-${dir}`);
+      const led = document.getElementById(`led-flame-${dir}`);
+      const text = document.getElementById(`text-flame-${dir}`);
+      const adc = document.getElementById(`adc-flame-${dir}`);
+
+      adc.textContent = `ADC: ${adcVal}`;
+      if (isFire) {
+        col.classList.add("active-fire");
+        led.className = "flame-led danger";
+        led.innerHTML = "🔥";
+        text.className = "flame-status-text danger";
+        text.textContent = "CÓ NGỌN LỬA!";
+      } else {
+        col.classList.remove("active-fire");
+        led.className = "flame-led safe";
+        led.innerHTML = "✓";
+        text.className = "flame-status-text safe";
+        text.textContent = "AN TOÀN";
+      }
+    }
+
+    // Update Ultrasonic Sensors
+    function updateUltrasonic(distLeft, distCenter, distRight) {
+      updateSonarItem("left", distLeft);
+      updateSonarItem("center", distCenter);
+      updateSonarItem("right", distRight);
+    }
+
+    function updateSonarItem(dir, distance) {
+      const valEl = document.getElementById(`dist-val-${dir}`);
+      const barEl = document.getElementById(`bar-${dir}`);
+
+      valEl.textContent = `${distance.toFixed(1)} cm`;
+
+      // Max bar range is 80cm
+      let pct = Math.min(100, Math.max(5, (distance / 80) * 100));
+      barEl.style.width = `${pct}%`;
+
+      // Colors
+      if (distance < 18) {
+        barEl.className = "sonar-bar-fill critical";
+        valEl.style.color = "var(--color-danger)";
+      } else if (distance < 30) {
+        barEl.className = "sonar-bar-fill warning";
+        valEl.style.color = "var(--color-warn)";
+      } else {
+        barEl.className = "sonar-bar-fill";
+        valEl.style.color = "var(--color-safe)";
+      }
+    }
+
+    // Update Pump Status
+    function updatePump(isActive) {
+      const indicator = document.getElementById("pump-indicator");
+      const badge = document.getElementById("pump-status-text");
+
+      if (isActive) {
+        indicator.classList.add("active");
+        badge.className = "pump-status-badge active";
+        badge.innerHTML = "<span>💧</span> ĐANG BƠM NƯỚC";
+      } else {
+        indicator.classList.remove("active");
+        badge.className = "pump-status-badge";
+        badge.innerHTML = "<span>●</span> ĐANG TẮT";
+      }
+    }
+
+    // Update Servo Angle (0° to 180°)
+    function updateServoAngle(angle) {
+      const needle = document.getElementById("servo-needle-gauge");
+      const text = document.getElementById("servo-angle-text");
+      const desc = document.getElementById("servo-dir-text");
+
+      // 0 deg = -90 deg rotate, 90 deg = 0 deg rotate, 180 deg = +90 deg rotate
+      const rot = (angle - 90);
+      needle.style.transform = `translateX(-50%) rotate(${rot}deg)`;
+      text.textContent = `${Math.round(angle)}°`;
+
+      if (angle > 110) {
+        desc.textContent = "Vòi đang chĩa sang TRÁI";
+      } else if (angle < 70) {
+        desc.textContent = "Vòi đang chĩa sang PHẢI";
+      } else {
+        desc.textContent = "Vòi đang chĩa CHÍNH GIỮA";
+      }
+    }
+
+    // Update Motion Direction
+    // Options: "FORWARD", "BACKWARD", "LEFT", "RIGHT", "STOP"
+    function updateMotion(direction) {
+      const cells = {
+        FORWARD: document.getElementById("motion-forward"),
+        BACKWARD: document.getElementById("motion-backward"),
+        LEFT: document.getElementById("motion-left"),
+        RIGHT: document.getElementById("motion-right"),
+        STOP: document.getElementById("motion-stop")
+      };
+
+      const titleMap = {
+        FORWARD: "⬆️ Xe Đang Tiến",
+        BACKWARD: "⬇️ Xe Đang Lùi",
+        LEFT: "⬅️ Xe Đang Rẽ Trái",
+        RIGHT: "➡️ Xe Đang Rẽ Phải",
+        STOP: "⏹️ Xe Đang Đứng Yên"
+      };
+
+      Object.values(cells).forEach(cell => { if (cell) cell.classList.remove("active"); });
+
+      const key = (direction || "STOP").toUpperCase();
+      if (cells[key]) {
+        cells[key].classList.add("active");
+      }
+      document.getElementById("motion-display-name").innerHTML = titleMap[key] || "⏹️ Xe Đang Đứng Yên";
+    }
+
+    // Emergency Stop Functions
+    function triggerEStop() {
+      isEStopLatched = true;
+      const btn = document.getElementById("btn-estop");
+      btn.classList.add("latched");
+
+      setAlgorithmState("ESTOP");
+      updatePump(false);
+      updateMotion("STOP");
+
+      // Send to ESP32
+      if (!isDemoMode) {
+        fetch(`/api/estop?action=trigger`, { method: "POST" }).catch(e => console.error(e));
+      }
+    }
+
+    function resetEStop() {
+      isEStopLatched = false;
+      const btn = document.getElementById("btn-estop");
+      btn.classList.remove("latched");
+
+      setAlgorithmState("IDLE");
+
+      // Send to ESP32
+      if (!isDemoMode) {
+        fetch(`/api/estop?action=reset`, { method: "POST" }).catch(e => console.error(e));
+      }
+    }
+
+    // Toggle Demo / Live ESP32 Mode
+    function toggleDemoMode() {
+      isDemoMode = !isDemoMode;
+      const badge = document.getElementById("conn-badge");
+      const text = document.getElementById("conn-text");
+      const btn = document.getElementById("btn-mode-toggle");
+
+      if (isDemoMode) {
+        badge.className = "conn-status demo";
+        text.textContent = "Chế độ mô phỏng (Demo)";
+        btn.textContent = "Chuyển kết nối ESP32";
+      } else {
+        badge.className = "conn-status";
+        text.textContent = "Đang kết nối ESP32...";
+        btn.textContent = "Bật chế độ Mô Phỏng";
+        pollESP32();
+      }
+    }
+
+    // DEMO SIMULATION LOOP (Runs realistic simulation of robot cycles)
+    let demoStep = 0;
+    setInterval(() => {
+      if (!isDemoMode || isEStopLatched) return;
+
+      demoStep = (demoStep + 1) % 100;
+
+      // Scenario 1: Normal Patrolling (0-30)
+      if (demoStep < 30) {
+        setAlgorithmState("PATROL");
+        updateFlameSensors(3850 + Math.random() * 80, 3900 + Math.random() * 80, 3880 + Math.random() * 80);
+        updateUltrasonic(45 + Math.sin(demoStep) * 5, 55 + Math.cos(demoStep) * 5, 48 + Math.sin(demoStep) * 6);
+        updatePump(false);
+        updateServoAngle(90);
+        updateMotion("FORWARD");
+      }
+      // Scenario 2: Obstacle detected -> Avoiding (30-50)
+      else if (demoStep < 50) {
+        setAlgorithmState("AVOID");
+        updateFlameSensors(3800, 3850, 3820);
+        const centerDist = Math.max(12, 35 - (demoStep - 30) * 1.5);
+        updateUltrasonic(16, centerDist, 45);
+        updatePump(false);
+        updateServoAngle(90);
+        if (centerDist < 18) {
+          updateMotion("BACKWARD");
+        } else {
+          updateMotion("RIGHT");
+        }
+      }
+      // Scenario 3: Fire detected on Left -> Approaching (50-70)
+      else if (demoStep < 70) {
+        setAlgorithmState("APPROACH");
+        updateFlameSensors(1200 - (demoStep - 50) * 20, 2800, 3900);
+        updateUltrasonic(35, 40, 50);
+        updatePump(false);
+        updateServoAngle(135);
+        updateMotion("LEFT");
+      }
+      // Scenario 4: Extinguishing Fire (70-90)
+      else if (demoStep < 90) {
+        setAlgorithmState("EXTINGUISH");
+        updateFlameSensors(450 + Math.random() * 50, 2200, 3800);
+        updateUltrasonic(25, 28, 32);
+        updatePump(true);
+        updateServoAngle(150);
+        updateMotion("STOP");
+      }
+      // Scenario 5: Safe Stopped / Idle (90-99)
+      else {
+        setAlgorithmState("IDLE");
+        updateFlameSensors(3800, 3800, 3800);
+        updateUltrasonic(40, 42, 45);
+        updatePump(false);
+        updateServoAngle(90);
+        updateMotion("STOP");
+      }
+    }, 400);
+
+    // REAL ESP32 POLLING (When connected to ESP32)
+    async function pollESP32() {
+      if (isDemoMode) return;
+
+      try {
+        const response = await fetch(`/api/status`, { cache: "no-store" });
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById("conn-badge").className = "conn-status";
+          document.getElementById("conn-text").textContent = "ESP32 Đã Kết Nối";
+
+          if (data.estop) {
+            triggerEStop();
+          } else if (!isEStopLatched) {
+            if (data.state) setAlgorithmState(data.state);
+            if (data.flame) updateFlameSensors(data.flame.left, data.flame.center, data.flame.right, data.flame.threshold || 1500);
+            if (data.ultrasonic) updateUltrasonic(data.ultrasonic.left, data.ultrasonic.center, data.ultrasonic.right);
+            if (data.pump !== undefined) updatePump(data.pump);
+            if (data.servo_angle !== undefined) updateServoAngle(data.servo_angle);
+            if (data.motion) updateMotion(data.motion);
+          }
+        } else {
+          throw new Error("HTTP error");
+        }
+      } catch (err) {
+        document.getElementById("conn-badge").className = "conn-status disconnected";
+        document.getElementById("conn-text").textContent = "Mất kết nối ESP32";
+      }
+
+      if (!isDemoMode) {
+        setTimeout(pollESP32, 250);
+      }
+    }
+  </script>
+</body>
+</html>
