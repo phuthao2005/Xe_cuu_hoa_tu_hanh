@@ -1,0 +1,362 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="VqPFywUOAV_YajB2kQ2K">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#FFFFFF,#FFFFFF)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-74" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="1128" width="1141.9" x="15" y="257" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-1" connectable="0" parent="LhLAXXGhZ2MoeinCNJDv-74" style="group" value="" vertex="1">
+          <mxGeometry height="665" width="1141.9" y="463" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-2" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="53.819999999999986" y="589.22" as="sourcePoint" />
+            <mxPoint x="283.92999999999995" y="586.64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-3" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="45.9" y="320.72" as="sourcePoint" />
+            <mxPoint x="47.65" y="584.69" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-4" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="284.89" y="317.33" as="sourcePoint" />
+            <mxPoint x="284.89" y="578.52" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-5" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;span style=&quot;font-size: 19px;&quot;&gt;Nguồn 2: Tín hiệu và điều khiển&lt;/span&gt;" vertex="1">
+          <mxGeometry height="49" width="282" x="22.9" y="266" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-6" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="50.73000000000001" y="311.47" as="sourcePoint" />
+            <mxPoint x="276.41999999999996" y="309" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-7" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#66B2FF);" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2 Pin 18650 (7.4V/ 2400mAh)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="86" width="141" x="99.4" y="406.5" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-8" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Điện áp 7.4V trực tiếp" vertex="1">
+          <mxGeometry height="39" width="94" x="295.9" y="434" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-9" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="ESP32&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-size: 11px;&quot;&gt;(Chân Vin)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="57" width="117" x="915.9" y="424" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-10" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-11">
+          <mxGeometry relative="1" x="-0.9196" as="geometry">
+            <mxPoint x="285.19" y="453.8299999999999" as="sourcePoint" />
+            <mxPoint x="474.62" y="453.28" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-11" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#66B2FF);" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Công tắc 2&lt;/font&gt;" vertex="1">
+          <mxGeometry height="57" width="94" x="399.9" y="426" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-12" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-15">
+          <mxGeometry relative="1" x="-0.6066" as="geometry">
+            <Array as="points">
+              <mxPoint x="556" y="454.5" />
+            </Array>
+            <mxPoint x="565.9" y="444.79999999999995" as="sourcePoint" />
+            <mxPoint x="693.23" y="88" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-13" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=15;" value="Dây âm của Pin" vertex="1">
+          <mxGeometry height="72" width="75" x="3.9000000000000004" y="54" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-15" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#33FF33);fontSize=14;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Mạch hạ áp LM2596&lt;/font&gt;" vertex="1">
+          <mxGeometry height="72" width="154" x="611.9" y="418.5" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-16" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Điện áp 7.4V trực tiếp" vertex="1">
+          <mxGeometry height="39" width="94" x="499.9" y="434" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-17" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#006633);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-68">
+          <mxGeometry relative="1" x="-0.9213" as="geometry">
+            <Array as="points">
+              <mxPoint y="446.8" />
+              <mxPoint y="48.5" />
+              <mxPoint x="197" y="48.5" />
+            </Array>
+            <mxPoint x="44.96999999999999" y="446.78" as="sourcePoint" />
+            <mxPoint x="389.9000000000001" y="48.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-18" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.472;exitDx=0;exitDy=0;exitPerimeter=0;" target="LhLAXXGhZ2MoeinCNJDv-9">
+          <mxGeometry relative="1" x="-0.5619" as="geometry">
+            <Array as="points" />
+            <mxPoint x="775.15" y="465.54999999999995" as="sourcePoint" />
+            <mxPoint x="883.9" y="454" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-19" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Điện áp 5V" vertex="1">
+          <mxGeometry height="39" width="68" x="775.9" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-20" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="Module Relay 5V" vertex="1">
+          <mxGeometry height="57" width="117" x="915.9" y="254" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-21" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="3 cảm biến HC-SR04" vertex="1">
+          <mxGeometry height="57" width="117" x="919.9" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-22" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="3 cảm biến lửa IR" vertex="1">
+          <mxGeometry height="57" width="117" x="915.9" y="334" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-23" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="Servo SG90" vertex="1">
+          <mxGeometry height="57" width="117" x="919.9" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-24" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="Máy bơm 5V" vertex="1">
+          <mxGeometry height="57" width="117" x="915.9" y="129" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-25" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-24">
+          <mxGeometry relative="1" x="-0.4286" as="geometry">
+            <Array as="points" />
+            <mxPoint x="973.9" y="306" as="sourcePoint" />
+            <mxPoint x="973.9" y="219" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-26" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Cổng NO" vertex="1">
+          <mxGeometry height="39" width="56" x="966.9" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-27" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-23">
+          <mxGeometry relative="1" x="-0.6746" as="geometry">
+            <Array as="points">
+              <mxPoint x="867.8" y="452.5" />
+              <mxPoint x="867.8" y="636.5" />
+            </Array>
+            <mxPoint x="874.9" y="468" as="sourcePoint" />
+            <mxPoint x="1024.9" y="468" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-28" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-21">
+          <mxGeometry relative="1" x="-0.5604" as="geometry">
+            <Array as="points">
+              <mxPoint x="867.8" y="452" />
+              <mxPoint x="867.8" y="548.2" />
+              <mxPoint x="892.4" y="548.2" />
+            </Array>
+            <mxPoint x="765.9" y="452" as="sourcePoint" />
+            <mxPoint x="902.99" y="581.19" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-29" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-20">
+          <mxGeometry relative="1" x="-0.6081" as="geometry">
+            <Array as="points">
+              <mxPoint x="867.8" y="453" />
+              <mxPoint x="867.8" y="296.8" />
+            </Array>
+            <mxPoint x="765.9" y="453" as="sourcePoint" />
+            <mxPoint x="919.9" y="269" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-30" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-22">
+          <mxGeometry relative="1" x="-0.499" as="geometry">
+            <Array as="points">
+              <mxPoint x="867.8" y="452" />
+              <mxPoint x="867.8" y="362.5" />
+            </Array>
+            <mxPoint x="765.9" y="452" as="sourcePoint" />
+            <mxPoint x="919.9" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-31" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#006633);strokeWidth=2;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-68">
+          <mxGeometry relative="1" x="-0.9042" as="geometry">
+            <Array as="points" />
+            <mxPoint x="968.9" y="118" as="sourcePoint" />
+            <mxPoint x="553.9000000000001" y="48.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-32" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#006633);strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" x="-0.9588" as="geometry">
+            <Array as="points">
+              <mxPoint x="1137.6000000000001" y="282.5" />
+              <mxPoint x="1137.6000000000001" y="48.5" />
+            </Array>
+            <mxPoint x="1289.9" y="163" as="sourcePoint" />
+            <mxPoint x="553.9000000000001" y="48.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-33" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=2;strokeColor=light-dark(#000000,#006633);entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-22" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.0119" as="geometry">
+            <Array as="points">
+              <mxPoint x="1137.5800000000002" y="362.3" />
+            </Array>
+            <mxPoint x="1137.5800000000002" y="276.97" as="sourcePoint" />
+            <mxPoint x="890.9" y="297" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-34" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=2;strokeColor=light-dark(#000000,#006633);entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-9" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.0236" as="geometry">
+            <Array as="points">
+              <mxPoint x="1139.1200000000001" y="452.52" />
+            </Array>
+            <mxPoint x="1138.64" y="360.61" as="sourcePoint" />
+            <mxPoint x="1036.9" y="449.71000000000004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-35" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=2;strokeColor=light-dark(#000000,#006633);entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-21" value="">
+          <mxGeometry height="50" relative="1" width="50" x="0.005" as="geometry">
+            <Array as="points">
+              <mxPoint x="1138.97" y="548.58" />
+            </Array>
+            <mxPoint x="1138.97" y="452.9" as="sourcePoint" />
+            <mxPoint x="1032.9" y="546.11" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-36" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=2;strokeColor=light-dark(#000000,#006633);entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-23" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.023" as="geometry">
+            <Array as="points">
+              <mxPoint x="1138.66" y="636.55" />
+            </Array>
+            <mxPoint x="1138.94" y="548.37" as="sourcePoint" />
+            <mxPoint x="1036.9" y="644.11" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-37" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Dây âm Relay" vertex="1">
+          <mxGeometry height="54" width="68" x="1044.9" y="254" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-38" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Các dây âm cảm biến lửa" vertex="1">
+          <mxGeometry height="54" width="84" x="1040.9" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-39" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=12;" value="Các dây âm cảm biến HC-SR04" vertex="1">
+          <mxGeometry height="54" width="113" x="1028.9" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-40" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Dây âm SG90" vertex="1">
+          <mxGeometry height="54" width="68" x="1052.9" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-41" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Chân GND ESP32" vertex="1">
+          <mxGeometry height="54" width="84" x="1044.9" y="425.5" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-42" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Dây âm máy bơm" vertex="1">
+          <mxGeometry height="54" width="68" x="973.9" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-43" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#006633);strokeWidth=2;dashed=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-68">
+          <mxGeometry relative="1" x="-0.8925" as="geometry">
+            <mxPoint x="666.9" y="376" as="sourcePoint" />
+            <mxPoint x="553.9000000000001" y="48.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-44" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Dây âm LM2596" vertex="1">
+          <mxGeometry height="69" width="62" x="584.9" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-45" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-1" source="LhLAXXGhZ2MoeinCNJDv-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=0.778;exitY=0.039;exitDx=0;exitDy=0;exitPerimeter=0;" target="LhLAXXGhZ2MoeinCNJDv-20">
+          <mxGeometry relative="1" x="-0.8102" as="geometry">
+            <Array as="points">
+              <mxPoint x="731.6999999999999" y="268.3" />
+            </Array>
+            <mxPoint x="734.75" y="416.16999999999996" as="sourcePoint" />
+            <mxPoint x="832.9" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-46" parent="LhLAXXGhZ2MoeinCNJDv-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Cổng COM" vertex="1">
+          <mxGeometry height="39" width="56" x="800.9" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-68" parent="LhLAXXGhZ2MoeinCNJDv-1" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#33FF33);fontSize=17;" value="&lt;font style=&quot;font-size: 23px;&quot;&gt;Ground chung&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 23px;&quot;&gt;(Tất cả cực âm của nguồn 1, nguồn 2 và các linh kiện đều nối chung)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="118" width="288.1" x="342.9" y="-11" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-49" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="29" y="388.22" as="sourcePoint" />
+            <mxPoint x="274.03" y="385.64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-50" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="17.00499999999994" y="48.99500000000012" as="sourcePoint" />
+            <mxPoint x="19" y="383" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-51" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="278" y="44" as="sourcePoint" />
+            <mxPoint x="279.9950000000001" y="378.0049999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-52" parent="LhLAXXGhZ2MoeinCNJDv-74" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;span style=&quot;font-size: 19px;&quot;&gt;Nguồn 1: Động lực công suất&lt;/span&gt;" vertex="1">
+          <mxGeometry height="49" width="268" x="16" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-53" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="24.49000000000001" y="43.58000000000004" as="sourcePoint" />
+            <mxPoint x="269.52" y="41" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-54" parent="LhLAXXGhZ2MoeinCNJDv-74" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#66B2FF);" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2 Pin 18650 (7.4V/ 2400mAh)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="86" width="141" x="79.5" y="172.5" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-55" parent="LhLAXXGhZ2MoeinCNJDv-74" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Điện áp 7.4V trực tiếp" vertex="1">
+          <mxGeometry height="39" width="94" x="323" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-56" parent="LhLAXXGhZ2MoeinCNJDv-74" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#FFFF66);fontColor=light-dark(#000000,#000000);fontSize=17;" value="( Cọc 12V) Mạch L298N 1( Bánh trái)" vertex="1">
+          <mxGeometry height="101" width="170" x="649" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-57" parent="LhLAXXGhZ2MoeinCNJDv-74" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#99FFFF);fontColor=light-dark(#000000,#000000);fontSize=17;" value="( Cọc 12V) Mạch L298N 2( Bánh phải)" vertex="1">
+          <mxGeometry height="101" width="170" x="649" y="251" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-58" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" source="LhLAXXGhZ2MoeinCNJDv-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#006633);strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-68">
+          <mxGeometry relative="1" x="-0.9764" as="geometry">
+            <Array as="points">
+              <mxPoint x="991.2" y="112.5" />
+              <mxPoint x="991.2" y="511.5" />
+              <mxPoint x="712.9" y="511.5" />
+              <mxPoint x="695.8" y="511" />
+            </Array>
+            <mxPoint x="819" y="112.22000000000003" as="sourcePoint" />
+            <mxPoint x="737.13" y="454.79999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-59" parent="LhLAXXGhZ2MoeinCNJDv-74" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=15;" value="Dây âm của L298N 1" vertex="1">
+          <mxGeometry height="57" width="90" x="839" y="84" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-61" parent="LhLAXXGhZ2MoeinCNJDv-74" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=15;" value="Dây âm của L298N 2" vertex="1">
+          <mxGeometry height="57" width="90" x="840.34" y="273" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-62" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LhLAXXGhZ2MoeinCNJDv-63">
+          <mxGeometry relative="1" x="-0.9196" as="geometry">
+            <mxPoint x="280.29" y="219.82999999999998" as="sourcePoint" />
+            <mxPoint x="469.72" y="219.27999999999997" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-63" parent="LhLAXXGhZ2MoeinCNJDv-74" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#66B2FF);" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Công tắc 1&lt;/font&gt;" vertex="1">
+          <mxGeometry height="57" width="94" x="440" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-64" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" source="LhLAXXGhZ2MoeinCNJDv-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="LhLAXXGhZ2MoeinCNJDv-56">
+          <mxGeometry relative="1" x="-0.9283" as="geometry">
+            <Array as="points">
+              <mxPoint x="600.1" y="220.5" />
+              <mxPoint x="600.1" y="112.5" />
+            </Array>
+            <mxPoint x="561" y="210.8" as="sourcePoint" />
+            <mxPoint x="720.71" y="211.97000000000003" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-65" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#FF3333);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="LhLAXXGhZ2MoeinCNJDv-57">
+          <mxGeometry relative="1" x="-0.9186" as="geometry">
+            <Array as="points">
+              <mxPoint x="600.1" y="220" />
+              <mxPoint x="600.1" y="301.5" />
+            </Array>
+            <mxPoint x="534" y="220.00000000000023" as="sourcePoint" />
+            <mxPoint x="649" y="328.0000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-67" parent="LhLAXXGhZ2MoeinCNJDv-74" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=15;" value="Dây âm của Pin" vertex="1">
+          <mxGeometry height="57" width="79" x="141.5" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-70" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=2;strokeColor=light-dark(#000000,#006633);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="143.07" y="511.91999999999996" as="sourcePoint" />
+            <mxPoint x="143.07" y="388.30999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LhLAXXGhZ2MoeinCNJDv-71" edge="1" parent="LhLAXXGhZ2MoeinCNJDv-74" source="LhLAXXGhZ2MoeinCNJDv-57" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=2;strokeColor=light-dark(#000000,#006633);exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="823.5350000000001" y="301.0050000000001" as="sourcePoint" />
+            <mxPoint x="991.09" y="300.82000000000005" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,139 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="ODmUtcunMtcF-OZTajtf">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#FFFFFF,#FFFFFF)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-33" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="398.22" width="1068.9950000000001" x="65" y="223" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-3" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="13" y="398.22" as="sourcePoint" />
+            <mxPoint x="258.03" y="395.64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-4" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1.0049999999999386" y="58.99500000000006" as="sourcePoint" />
+            <mxPoint x="3" y="393" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-5" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="262" y="54" as="sourcePoint" />
+            <mxPoint x="263.99500000000006" y="388.0049999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-6" parent="VyzMwnTp9ZcXOIIhERcx-33" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Khối đầu vào(Inputs)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="49" width="268" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-7" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" source="VyzMwnTp9ZcXOIIhERcx-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#66FF66);flowAnimation=0;dashed=1;strokeWidth=2;">
+          <mxGeometry relative="1" x="0.4954" as="geometry">
+            <mxPoint x="400.25" y="211.02999999999997" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-8" parent="VyzMwnTp9ZcXOIIhERcx-33" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fillColor=light-dark(#FFFFFF,#66FF66);fontColor=light-dark(#000000,#000000);fontSize=16;" value="Tín hiệu báo có lửa&lt;div&gt;(Giá trị analog của 1 trong&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;các cảm biến &amp;lt; &lt;/span&gt;&lt;font style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;FLAME_THRESHOLD&lt;/font&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="144" width="239" x="10" y="137" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-9" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="8.490000000000009" y="53.58000000000004" as="sourcePoint" />
+            <mxPoint x="253.51999999999998" y="51" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-10" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="412" y="392.22" as="sourcePoint" />
+            <mxPoint x="657.03" y="389.64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-11" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="400.00499999999994" y="52.99500000000012" as="sourcePoint" />
+            <mxPoint x="402" y="387" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-12" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="661" y="48" as="sourcePoint" />
+            <mxPoint x="662.9950000000001" y="382.0049999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-13" parent="VyzMwnTp9ZcXOIIhERcx-33" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;span style=&quot;font-size: 19px;&quot;&gt;Khối xử lý (Processing)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="49" width="268" x="399" y="4" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-14" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="407.49" y="47.58000000000004" as="sourcePoint" />
+            <mxPoint x="652.52" y="45" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-15" parent="VyzMwnTp9ZcXOIIhERcx-33" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#66B2FF);" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Vi điều khiển Esp32&lt;/span&gt;" vertex="1">
+          <mxGeometry height="86" width="165" x="452" y="79" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-16" parent="VyzMwnTp9ZcXOIIhERcx-33" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFCC);fontSize=16;align=left;" value="&lt;div style=&quot;text-align: justify;&quot;&gt;Kích hoạt chu trình dập lửa&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;Duy trì máy bơm cho đến khi tắt tín hiệu lửa&lt;/div&gt;" vertex="1">
+          <mxGeometry height="163" width="225" x="422" y="201" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-17" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="808" y="387.22" as="sourcePoint" />
+            <mxPoint x="1066.94" y="383.64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-18" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="796.0049999999999" y="47.99500000000012" as="sourcePoint" />
+            <mxPoint x="798" y="382" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-19" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1067" y="43" as="sourcePoint" />
+            <mxPoint x="1068.9950000000001" y="377.0049999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-20" parent="VyzMwnTp9ZcXOIIhERcx-33" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;span style=&quot;font-size: 19px;&quot;&gt;Khối chấp hành (Outputs)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="49" width="268" x="798.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-21" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#000000);strokeWidth=3;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="803.49" y="42.58000000000004" as="sourcePoint" />
+            <mxPoint x="1060.77" y="41.25" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-22" parent="VyzMwnTp9ZcXOIIhERcx-33" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#00FFFF);fontColor=light-dark(#000000,#000000);" value="Module Relay 5V&lt;div&gt;(Đóng tiếp điểm COM-NO)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="77" width="145" x="863" y="109" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-23" parent="VyzMwnTp9ZcXOIIhERcx-33" style="rounded=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FF99CC);fontSize=14;" value="Máy bơm 5V&lt;div&gt;(Phun nước dập tắt lửa)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="91" width="155.5" x="858" y="246" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-24" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" source="VyzMwnTp9ZcXOIIhERcx-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#33FFFF);flowAnimation=0;dashed=1;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="VyzMwnTp9ZcXOIIhERcx-23">
+          <mxGeometry relative="1" x="0.6647" as="geometry">
+            <mxPoint x="952" y="225" as="sourcePoint" />
+            <mxPoint x="1018.78" y="117.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-25" edge="1" parent="VyzMwnTp9ZcXOIIhERcx-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeColor=light-dark(#000000,#9999FF);strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="VyzMwnTp9ZcXOIIhERcx-22">
+          <mxGeometry relative="1" x="-0.6232" as="geometry">
+            <Array as="points">
+              <mxPoint x="662.4" y="148" />
+              <mxPoint x="847" y="147.5" />
+            </Array>
+            <mxPoint x="662.42" y="146.89999999999998" as="sourcePoint" />
+            <mxPoint x="837.68" y="161.20999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-26" parent="VyzMwnTp9ZcXOIIhERcx-33" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="Active LOW" vertex="1">
+          <mxGeometry height="34" width="121" x="671" y="119" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-27" parent="VyzMwnTp9ZcXOIIhERcx-33" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=15;" value="Tín hiệu điều kiện" vertex="1">
+          <mxGeometry height="91" width="78" x="281" y="163.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VyzMwnTp9ZcXOIIhERcx-32" parent="VyzMwnTp9ZcXOIIhERcx-33" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);fontSize=14;" value="GPIO 13" vertex="1">
+          <mxGeometry height="34" width="121" x="673" y="146" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

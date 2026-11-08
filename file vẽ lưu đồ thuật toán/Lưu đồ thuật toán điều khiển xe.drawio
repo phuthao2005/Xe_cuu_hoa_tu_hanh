@@ -1,0 +1,292 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="tM53IylCiyp1Y1wjoA1I">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="" mermaidData="{&#xa;  &quot;data&quot;: &quot;graph TD\n    %% Khai báo các lớp màu sắc chuẩn báo cáo\n    classDef startEnd fill:#e0e0e0,stroke:#333333,stroke-width:2px,color:#000000,font-weight:bold;\n    classDef ioNode fill:#bbdefb,stroke:#1565c0,stroke-width:1.5px,color:#000000;\n    classDef decisionNode fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px,color:#000000,font-weight:bold;\n    classDef straightNode fill:#c8e6c9,stroke:#2e7d32,stroke-width:1.5px,color:#000000;\n    classDef turnNode fill:#ffe0b2,stroke:#ef6c00,stroke-width:1.5px,color:#000000;\n    classDef stopNode fill:#ffcdd2,stroke:#c62828,stroke-width:1.5px,color:#000000;\n\n    Start([BẮT ĐẦU]):::startEnd --&gt; ReceiveCmd[/Nhận lệnh di chuyển từ Khối Xử lý/]:::ioNode\n    ReceiveCmd --&gt; CheckCmd{Mã lệnh di chuyển là gì?}:::decisionNode\n\n    %% TIẾN THẲNG\n    CheckCmd -- TIẾN THẲNG --&gt; Fwd[Lệnh move_forward]:::straightNode\n    Fwd --&gt; FwdSet[Xuất xung PWM = SPD_FWD 60%&lt;br/&gt;IN1=HIGH, IN4=HIGH, IN6=HIGH, IN7=HIGH&lt;br/&gt;IN2=LOW, IN3=LOW, IN5=LOW, IN8=LOW]:::straightNode\n    FwdSet --&gt; End([KẾT THÚC / CHUYỂN TRẠNG THÁI]):::startEnd\n\n    %% LÙI XE\n    CheckCmd -- LÙI XE --&gt; Bwd[Lệnh move_backward]:::straightNode\n    Bwd --&gt; BwdSet[Xuất xung PWM = SPD_FWD 60%&lt;br/&gt;IN2=HIGH, IN3=HIGH, IN5=HIGH, IN8=HIGH&lt;br/&gt;IN1=LOW, IN4=LOW, IN6=LOW, IN7=LOW]:::straightNode\n    BwdSet --&gt; End\n\n    %% XOAY TRÁI TẠI CHỖ\n    CheckCmd -- XOAY TRÁI TẠI CHỖ --&gt; TurnLPivot[Lệnh turn_left_pivot]:::turnNode\n    TurnLPivot --&gt; TurnLPivotSet[Xuất xung PWM = SPD_TURN 80%&lt;br/&gt;Bánh Trái quay LÙI: IN2=HIGH, IN3=HIGH&lt;br/&gt;Bánh Phải quay TIẾN: IN6=HIGH, IN7=HIGH]:::turnNode\n    TurnLPivotSet --&gt; End\n\n    %% XOAY PHẢI TẠI CHỖ\n    CheckCmd -- XOAY PHẢI TẠI CHỖ --&gt; TurnRPivot[Lệnh turn_right_pivot]:::turnNode\n    TurnRPivot --&gt; TurnRPivotSet[Xuất xung PWM = SPD_TURN 80%&lt;br/&gt;Bánh Trái quay TIẾN: IN1=HIGH, IN4=HIGH&lt;br/&gt;Bánh Phải quay LÙI: IN5=HIGH, IN8=HIGH]:::turnNode\n    TurnRPivotSet --&gt; End\n\n    %% LƯỢN NÉ SANG TRÁI\n    CheckCmd -- LƯỢN NÉ TRÁI --&gt; SteerLSoft[Lệnh steer_left_soft]:::turnNode\n    SteerLSoft --&gt; SteerLSoftSet[Bánh Trái giảm tốc: PWM = SPD_SOFT_IN 40%&lt;br/&gt;Bánh Phải tăng tốc: PWM = SPD_SOFT_OUT 85%]:::turnNode\n    SteerLSoftSet --&gt; End\n\n    %% LƯỢN NÉ SANG PHẢI\n    CheckCmd -- LƯỢN NÉ PHẢI --&gt; SteerRSoft[Lệnh steer_right_soft]:::turnNode\n    SteerRSoft --&gt; SteerRSoftSet[Bánh Trái tăng tốc: PWM = SPD_SOFT_OUT 85%&lt;br/&gt;Bánh Phải giảm tốc: PWM = SPD_SOFT_IN 40%]:::turnNode\n    SteerRSoftSet --&gt; End\n\n    %% DỪNG XE\n    CheckCmd -- DỪNG XE --&gt; Stop[Lệnh stop_robot]:::stopNode\n    Stop --&gt; StopSet[Xuất duty_u16 = 0 cho cả 8 chân IN1..IN8&lt;br/&gt;Ngắt toàn bộ công suất động cơ]:::stopNode\n    StopSet --&gt; End&quot;,&#xa;  &quot;config&quot;: null,&#xa;  &quot;version&quot;: &quot;12&quot;&#xa;}" id="XlnUP0APU1YkB7ypW4tX-43">
+          <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=10;" vertex="1">
+            <mxGeometry as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="BẮT ĐẦU" mermaidId="n:Start" mermaidBaseStyle="html=1;rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#e0e0e0;strokeColor=#333333;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontStyle=1;" mermaidBaseValue="BẮT ĐẦU" id="XlnUP0APU1YkB7ypW4tX-44">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#e0e0e0;strokeColor=#333333;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontStyle=1;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="45" width="171" x="597" y="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Nhận lệnh di chuyển từ Khối Xử lý" mermaidId="n:ReceiveCmd" mermaidBaseStyle="html=1;shape=parallelogram;perimeter=parallelogramPerimeter;fixedSize=1;size=38.75;strokeWidth=1.5;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1565c0;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Nhận lệnh di chuyển từ Khối Xử lý" id="XlnUP0APU1YkB7ypW4tX-45">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;shape=parallelogram;perimeter=parallelogramPerimeter;fixedSize=1;size=38.75;strokeWidth=1.5;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1565c0;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="78" width="186" x="589" y="109" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Mã lệnh di chuyển là gì?" mermaidId="n:CheckCmd" mermaidBaseStyle="rhombus;html=1;strokeWidth=1.5;whiteSpace=wrap;fillColor=#fff9c4;strokeColor=#fbc02d;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontStyle=1;" mermaidBaseValue="Mã lệnh di chuyển là gì?" id="XlnUP0APU1YkB7ypW4tX-46">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="rhombus;html=1;strokeWidth=1.5;whiteSpace=wrap;fillColor=#fff9c4;strokeColor=#fbc02d;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontStyle=1;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="208" width="208" x="578" y="221" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh move_forward" mermaidId="n:Fwd" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh move_forward" id="XlnUP0APU1YkB7ypW4tX-47">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="30" y="492" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Xuất xung PWM = SPD_FWD 60%&#xa;IN1=HIGH, IN4=HIGH, IN6=HIGH, IN7=HIGH&#xa;IN2=LOW, IN3=LOW, IN5=LOW, IN8=LOW" mermaidId="n:FwdSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Xuất xung PWM = SPD_FWD 60%&#xa;IN1=HIGH, IN4=HIGH, IN6=HIGH, IN7=HIGH&#xa;IN2=LOW, IN3=LOW, IN5=LOW, IN8=LOW" id="XlnUP0APU1YkB7ypW4tX-48">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="234" width="152" x="30" y="598" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="KẾT THÚC / CHUYỂN TRẠNG THÁI" mermaidId="n:End" mermaidBaseStyle="html=1;rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#e0e0e0;strokeColor=#333333;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontStyle=1;" mermaidBaseValue="KẾT THÚC / CHUYỂN TRẠNG THÁI" id="XlnUP0APU1YkB7ypW4tX-49">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#e0e0e0;strokeColor=#333333;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontStyle=1;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="87" width="171" x="597" y="914" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh move_backward" mermaidId="n:Bwd" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh move_backward" id="XlnUP0APU1YkB7ypW4tX-50">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="222" y="492" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Xuất xung PWM = SPD_FWD 60%&#xa;IN2=HIGH, IN3=HIGH, IN5=HIGH, IN8=HIGH&#xa;IN1=LOW, IN4=LOW, IN6=LOW, IN7=LOW" mermaidId="n:BwdSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Xuất xung PWM = SPD_FWD 60%&#xa;IN2=HIGH, IN3=HIGH, IN5=HIGH, IN8=HIGH&#xa;IN1=LOW, IN4=LOW, IN6=LOW, IN7=LOW" id="XlnUP0APU1YkB7ypW4tX-51">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#c8e6c9;strokeColor=#2e7d32;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="234" width="152" x="222" y="598" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh turn_left_pivot" mermaidId="n:TurnLPivot" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh turn_left_pivot" id="XlnUP0APU1YkB7ypW4tX-52">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="414" y="492" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Xuất xung PWM = SPD_TURN 80%&#xa;Bánh Trái quay LÙI: IN2=HIGH, IN3=HIGH&#xa;Bánh Phải quay TIẾN: IN6=HIGH, IN7=HIGH" mermaidId="n:TurnLPivotSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Xuất xung PWM = SPD_TURN 80%&#xa;Bánh Trái quay LÙI: IN2=HIGH, IN3=HIGH&#xa;Bánh Phải quay TIẾN: IN6=HIGH, IN7=HIGH" id="XlnUP0APU1YkB7ypW4tX-53">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="192" width="152" x="414" y="602" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh turn_right_pivot" mermaidId="n:TurnRPivot" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh turn_right_pivot" id="XlnUP0APU1YkB7ypW4tX-54">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="606" y="492" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Xuất xung PWM = SPD_TURN 80%&#xa;Bánh Trái quay TIẾN: IN1=HIGH, IN4=HIGH&#xa;Bánh Phải quay LÙI: IN5=HIGH, IN8=HIGH" mermaidId="n:TurnRPivotSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Xuất xung PWM = SPD_TURN 80%&#xa;Bánh Trái quay TIẾN: IN1=HIGH, IN4=HIGH&#xa;Bánh Phải quay LÙI: IN5=HIGH, IN8=HIGH" id="XlnUP0APU1YkB7ypW4tX-55">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="192" width="152" x="606" y="602" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh steer_left_soft" mermaidId="n:SteerLSoft" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh steer_left_soft" id="XlnUP0APU1YkB7ypW4tX-56">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="798" y="492" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Bánh Trái giảm tốc: PWM = SPD_SOFT_IN 40%&#xa;Bánh Phải tăng tốc: PWM = SPD_SOFT_OUT 85%" mermaidId="n:SteerLSoftSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Bánh Trái giảm tốc: PWM = SPD_SOFT_IN 40%&#xa;Bánh Phải tăng tốc: PWM = SPD_SOFT_OUT 85%" id="XlnUP0APU1YkB7ypW4tX-57">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="172" width="152" x="798" y="604" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh steer_right_soft" mermaidId="n:SteerRSoft" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh steer_right_soft" id="XlnUP0APU1YkB7ypW4tX-58">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="990" y="492" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Bánh Trái tăng tốc: PWM = SPD_SOFT_OUT 85%&#xa;Bánh Phải giảm tốc: PWM = SPD_SOFT_IN 40%" mermaidId="n:SteerRSoftSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Bánh Trái tăng tốc: PWM = SPD_SOFT_OUT 85%&#xa;Bánh Phải giảm tốc: PWM = SPD_SOFT_IN 40%" id="XlnUP0APU1YkB7ypW4tX-59">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffe0b2;strokeColor=#ef6c00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="172" width="152" x="990" y="604" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Lệnh stop_robot" mermaidId="n:Stop" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffcdd2;strokeColor=#c62828;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Lệnh stop_robot" id="XlnUP0APU1YkB7ypW4tX-60">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffcdd2;strokeColor=#c62828;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="45" width="152" x="1182" y="502" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Xuất duty_u16 = 0 cho cả 8 chân IN1..IN8&#xa;Ngắt toàn bộ công suất động cơ" mermaidId="n:StopSet" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffcdd2;strokeColor=#c62828;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Xuất duty_u16 = 0 cho cả 8 chân IN1..IN8&#xa;Ngắt toàn bộ công suất động cơ" id="XlnUP0APU1YkB7ypW4tX-61">
+          <mxCell parent="XlnUP0APU1YkB7ypW4tX-43" style="html=1;whiteSpace=wrap;strokeWidth=1.5;fillColor=#ffcdd2;strokeColor=#c62828;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="150" width="152" x="1182" y="602" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:Start-&gt;ReceiveCmd#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-62">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-44" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-45">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:ReceiveCmd-&gt;CheckCmd#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-63">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-45" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-46">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="TIẾN THẲNG" mermaidId="e:CheckCmd-&gt;Fwd#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.16;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="TIẾN THẲNG" id="XlnUP0APU1YkB7ypW4tX-64">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.149;exitY=0.656;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitDx=0;exitDy=0;exitPerimeter=0;" target="XlnUP0APU1YkB7ypW4tX-47">
+            <mxGeometry relative="1" x="0.852" y="-4" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:Fwd-&gt;FwdSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-65">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-47" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-48">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:FwdSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.17;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-66">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-48" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.17;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" x="-0.0002" as="geometry">
+              <Array as="points">
+                <mxPoint x="106" y="892" />
+                <mxPoint x="625" y="892" />
+                <mxPoint x="625" y="901.6" />
+                <mxPoint x="626.1" y="901.6" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="LÙI XE" mermaidId="e:CheckCmd-&gt;Bwd#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.27;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="LÙI XE" id="XlnUP0APU1YkB7ypW4tX-67">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitDx=0;exitDy=0;" target="XlnUP0APU1YkB7ypW4tX-50">
+            <mxGeometry relative="1" x="0.8079" y="2" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:Bwd-&gt;BwdSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-68">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-50" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-51">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:BwdSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.28;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-69">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-51" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.28;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="298" y="872" />
+                <mxPoint x="644" y="872" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="XOAY TRÁI TẠI CHỖ" mermaidId="e:CheckCmd-&gt;TurnLPivot#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.39;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="XOAY TRÁI TẠI CHỖ" id="XlnUP0APU1YkB7ypW4tX-70">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.319;exitY=0.826;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitDx=0;exitDy=0;exitPerimeter=0;" target="XlnUP0APU1YkB7ypW4tX-52">
+            <mxGeometry relative="1" x="0.6917" y="2" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="490" y="392.8" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:TurnLPivot-&gt;TurnLPivotSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-71">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-52" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-53">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:TurnLPivotSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.39;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-72">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-53" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.39;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="490" y="852" />
+                <mxPoint x="663" y="852" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="XOAY PHẢI TẠI CHỖ" mermaidId="e:CheckCmd-&gt;TurnRPivot#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="XOAY PHẢI TẠI CHỖ" id="XlnUP0APU1YkB7ypW4tX-73">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="XlnUP0APU1YkB7ypW4tX-54">
+            <mxGeometry relative="1" x="-0.261" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points" />
+              <mxPoint x="682" y="458" as="sourcePoint" />
+              <mxPoint x="682" y="599" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:TurnRPivot-&gt;TurnRPivotSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-74">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-54" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-55">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:TurnRPivotSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-75">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-55" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="LƯỢN NÉ TRÁI" mermaidId="e:CheckCmd-&gt;SteerLSoft#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.61;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="LƯỢN NÉ TRÁI" id="XlnUP0APU1YkB7ypW4tX-76">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.679;exitY=0.823;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitDx=0;exitDy=0;exitPerimeter=0;" target="XlnUP0APU1YkB7ypW4tX-56">
+            <mxGeometry relative="1" x="0.6761" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:SteerLSoft-&gt;SteerLSoftSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-77">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-56" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-57">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:SteerLSoftSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.61;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-78">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-57" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.61;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="874" y="852" />
+                <mxPoint x="701" y="852" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="LƯỢN NÉ PHẢI" mermaidId="e:CheckCmd-&gt;SteerRSoft#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.73;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="LƯỢN NÉ PHẢI" id="XlnUP0APU1YkB7ypW4tX-79">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitDx=0;exitDy=0;" target="XlnUP0APU1YkB7ypW4tX-58">
+            <mxGeometry relative="1" x="0.8044" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:SteerRSoft-&gt;SteerRSoftSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-80">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-58" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-59">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:SteerRSoftSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.72;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-81">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-59" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=0.99;entryX=0.72;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1066" y="872" />
+                <mxPoint x="720" y="872" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="DỪNG XE" mermaidId="e:CheckCmd-&gt;Stop#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.84;exitY=1;entryX=0.5;entryY=0.01;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="DỪNG XE" id="XlnUP0APU1YkB7ypW4tX-82">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;entryX=0.5;entryY=0.01;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;exitX=0.837;exitY=0.663;exitDx=0;exitDy=0;exitPerimeter=0;" target="XlnUP0APU1YkB7ypW4tX-60">
+            <mxGeometry relative="1" x="0.844" y="-2" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:Stop-&gt;StopSet#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-83">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-60" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-61">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:StopSet-&gt;End#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.83;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="" id="XlnUP0APU1YkB7ypW4tX-84">
+          <mxCell edge="1" parent="XlnUP0APU1YkB7ypW4tX-43" source="XlnUP0APU1YkB7ypW4tX-61" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.83;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" target="XlnUP0APU1YkB7ypW4tX-49">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1258" y="892" />
+                <mxPoint x="739" y="892" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
